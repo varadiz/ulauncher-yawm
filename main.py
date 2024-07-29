@@ -30,19 +30,28 @@ class KeywordQueryEventListener(EventListener):
         windows = result.split("\n")
         items = []
 
-        # TODO should filter results based on query: event.get_query()
+        search = event.get_argument()
         for win in windows:
+
             win_id = win.split(" ")[0]
-            win_name = " ".join(win.split(" ")[3:])
-
+            win_name = " ".join(win.split(" ")[4:])
             data = {"win_id": win_id}
-            items.append(ExtensionResultItem(
-                icon="images/icon.png",
-                name=win_name,
-                description=win_name,
-                on_enter=ExtensionCustomAction(data, keep_app_open=True)
-            ))
 
+            if search is None:  # in win_name:
+                items.append(ExtensionResultItem(
+                    icon="images/icon.png",
+                    name=win_name,
+                    description="",
+                    on_enter=ExtensionCustomAction(data, keep_app_open=True)
+                ))
+            elif search.lower() in win_name.lower():
+                items.append(ExtensionResultItem(
+                    icon="images/icon.png",
+                    name=win_name,
+                    description="",
+                    on_enter=ExtensionCustomAction(
+                        data, keep_app_open=True)
+                ))
         return RenderResultListAction(items)
 
 
