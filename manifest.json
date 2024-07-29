@@ -1,0 +1,19 @@
+{
+  "required_api_version": "2",
+  "name": "Windows manager wmctrl",
+  "description": "Windows manager extension using wmctrl",
+  "developer_name": "varadiz",
+  "icon": "images/icon.png",
+  "options": {
+    "query_debounce": 0.1
+  },
+  "preferences": [
+    {
+      "id": "kw",
+      "type": "keyword",
+      "name": "WinMan",
+      "description": "Windown manager",
+      "default_value": "w"
+    }
+  ]
+}
